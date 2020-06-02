@@ -1,4 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { App } from './App'
 
-ReactDOM.render(<h1>Hello there!</h1>, document.querySelector('#app'))
+ReactDOM.render(<App />, document.querySelector('#app'))
