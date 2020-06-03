@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Category } from '../Category'
 import { List, Item } from './styles'
+import axios from 'axios'
 
 export const ListOfCategories = () => {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    window.fetch('https://petgram-backend-one.now.sh/categories')
-      .then(res => res.json())
-      .then(data => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get('https://petgram-backend-one.now.sh/categories')
         setCategories(data)
-      })
-      .catch(error => {
+      } catch (error) {
         console.log(error)
-      })
+      }
+    }
+
+    fetchCategories()
   }, [])
 
   return (
