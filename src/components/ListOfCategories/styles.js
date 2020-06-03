@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { popIn } from '../../styles/Animations'
 
 export const List = styled.ul`
   display: flex;
@@ -6,6 +7,7 @@ export const List = styled.ul`
   width: 100%;
 
   &.fixed {
+    ${popIn()}
     background: #FFF;
     border-radius: 25px;
     box-shadow: 0 0 20px rgba(0, 0, 0, .25);
