@@ -1,18 +1,5 @@
-import styled, { css, keyframes } from 'styled-components'
-
-const fadeInKeyframes = keyframes`
-  from {
-    filter: blur(6px);
-    opacity: 0;
-  }
-
-  to {
-    filter: blur(0);
-    opacity: 1;
-  }
-`
-
-const fadeIn = ({ time = '1s', type = 'ease' } = {}) => css`animation: ${time} ${fadeInKeyframes} ${type};`
+import styled from 'styled-components'
+import { fadeIn } from '../../styles/Animations'
 
 export const ImageWrapper = styled.div`
   border-radius: 10px;
