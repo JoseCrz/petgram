@@ -4,25 +4,24 @@ import { FiHeart } from 'react-icons/fi'
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png'
 
+const loadPollyfill = async () => {
+  try {
+    await import('intersection-observer')
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const [show, setShow] = useState(false)
   const element = useRef(null)
 
   useEffect(() => {
-    const loadPollyfill = async () => {
-      try {
-        await import('intersection-observer')
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
     if (!window.IntersectionObserver) loadPollyfill()
 
     const observer = new window.IntersectionObserver(entries => {
       const { isIntersecting } = entries[0]
       if (isIntersecting) {
-        console.log('Intersecting')
         setShow(true)
         observer.disconnect()
       }
