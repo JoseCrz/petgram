@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Article, ImageWrapper, Image, Button } from './style'
-import { FiHeart } from 'react-icons/fi'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png'
 
@@ -13,7 +13,16 @@ const loadPollyfill = async () => {
 }
 
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
+  const key = `like-${id}`
   const [show, setShow] = useState(false)
+  const [like, setLike] = useState(() => {
+    try {
+      return window.localStorage.getItem(key)
+    } catch (error) {
+      console.error(error)
+      return false
+    }
+  })
   const element = useRef(null)
 
   useEffect(() => {
@@ -30,6 +39,17 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
     observer.observe(element.current)
   }, [element])
 
+  const Icon = like ? AiFillHeart : AiOutlineHeart
+
+  const setLocalStorage = value => {
+    try {
+      window.localStorage.setItem(key, value)
+      setLike(value)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <Article ref={element}>
       {
@@ -40,7 +60,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
                 <Image src={src} />
               </ImageWrapper>
             </a>
-            <Button> <FiHeart size='24px' /> {likes} likes</Button>
+            <Button onClick={() => setLocalStorage(!like)}> <Icon size='24px' /> {likes} likes</Button>
           </>
       }
     </Article>
