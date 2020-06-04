@@ -3,23 +3,33 @@ import { Category } from '../Category'
 import { List, Item } from './styles'
 import axios from 'axios'
 
-export const ListOfCategories = () => {
+const useCategoriesFetch = () => {
   const [categories, setCategories] = useState([])
-  const [showFixed, setShowFixed] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // ? Effect to fetch data
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoading(true)
       try {
         const { data } = await axios.get('https://petgram-backend-one.now.sh/categories')
         setCategories(data)
+        setLoading(false)
       } catch (error) {
+        setLoading(false)
         console.log(error)
       }
     }
 
     fetchCategories()
   }, [])
+
+  return { categories, loading }
+}
+
+export const ListOfCategories = () => {
+  const { categories, loading } = useCategoriesFetch()
+  const [showFixed, setShowFixed] = useState(false)
 
   // ? Effect to determine whether or not to render the mini fixed list
   useEffect(() => {
@@ -37,7 +47,11 @@ export const ListOfCategories = () => {
 
   const renderList = fixed => (
     <List fixed={fixed}>
-      {categories.map(category => <Item key={category.id}> <Category {...category} /> </Item>)}
+      {
+        loading
+          ? <Item key='Loading'> <Category /> </Item>
+          : categories.map(category => <Item key={category.id}> <Category {...category} /> </Item>)
+      }
     </List>
   )
 
