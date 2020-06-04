@@ -9,19 +9,26 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const element = useRef(null)
 
   useEffect(() => {
-    import('intersection-observer')
-      .then(() => {
-        const observer = new window.IntersectionObserver(entries => {
-          const { isIntersecting } = entries[0]
-          if (isIntersecting) {
-            console.log('Intersecting')
-            setShow(true)
-            observer.disconnect()
-          }
-        })
+    const loadPollyfill = async () => {
+      try {
+        await import('intersection-observer')
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
-        observer.observe(element.current)
-      })
+    if (!window.IntersectionObserver) loadPollyfill()
+
+    const observer = new window.IntersectionObserver(entries => {
+      const { isIntersecting } = entries[0]
+      if (isIntersecting) {
+        console.log('Intersecting')
+        setShow(true)
+        observer.disconnect()
+      }
+    })
+
+    observer.observe(element.current)
   }, [element])
 
   return (
