@@ -43,10 +43,13 @@
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.10.1",
+    "apollo-boost": "^0.4.9",
     "axios": "^0.19.2",
     "file-loader": "^5.1.0",
+    "graphql": "^15.0.0",
     "intersection-observer": "^0.10.0",
     "react": "^16.13.1",
+    "react-apollo": "^3.1.5",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
     "styled-components": "^5.1.1"
