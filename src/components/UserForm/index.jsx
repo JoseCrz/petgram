@@ -1,13 +1,26 @@
 import React, { useState } from 'react'
 
+const useInputValue = initialValue => {
+  const [value, setValue] = useState(initialValue)
+
+  const onChange = event => {
+    setValue(event.target.value)
+  }
+
+  return {
+    value,
+    onChange
+  }
+}
+
 export const UserForm = ({ onSubmit }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const email = useInputValue('')
+  const password = useInputValue('')
 
   return (
     <form onSubmit={onSubmit}>
-      <input type='text' placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} />
-      <input type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} />
+      <input type='text' placeholder='Email' {...email} />
+      <input type='password' placeholder='Password' {...password} />
       <button type='submit'>Log in</button>
     </form>
   )
