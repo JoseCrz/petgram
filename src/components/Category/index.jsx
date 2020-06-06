@@ -1,10 +1,10 @@
 import React from 'react'
-import { Anchor, Image } from './styles'
+import { Link, Image } from './styles'
 import defaultImage from '../../static/img/loading.gif'
 
-export const Category = ({ cover = defaultImage, path, emoji = '🔮' }) => (
-  <Anchor href={path}>
+export const Category = ({ cover = defaultImage, path = '#', emoji = '🔮' }) => (
+  <Link to={path}>
     <Image src={cover} />
     {emoji}
-  </Anchor>
+  </Link>
 )
