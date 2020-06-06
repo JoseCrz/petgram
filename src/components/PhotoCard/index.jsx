@@ -1,6 +1,6 @@
 import React from 'react'
-import { Article, ImageWrapper, Image, Button } from './style'
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import { Article, ImageWrapper, Image } from './style'
+import { FavButton } from '../FavButton'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
 
@@ -11,7 +11,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const [like, setLike] = useLocalStorage(key, false)
   const [show, element] = useNearScreen()
 
-  const Icon = like ? AiFillHeart : AiOutlineHeart
+  const handleOnClick = () => setLike(!like)
 
   return (
     <Article ref={element}>
@@ -23,7 +23,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
                 <Image src={src} />
               </ImageWrapper>
             </a>
-            <Button onClick={() => setLike(!like)}> <Icon size='24px' /> {likes} likes</Button>
+            <FavButton like={like} likes={likes} onClick={handleOnClick} />
           </>
       }
     </Article>

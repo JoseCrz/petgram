@@ -23,12 +23,3 @@ export const Image = styled.img`
   top: 0;
   width: 100%;
 `
-export const Button = styled.button`
-  padding-top: 8px;
-  display: flex;
-  align-items: center;
-
-  & svg {
-    margin-right: 5px;
-  }
-`
