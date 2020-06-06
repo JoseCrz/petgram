@@ -6,7 +6,9 @@ const Provider = ({ children }) => {
 
   const value = {
     isAuth,
-    activateAutu: () => setIsAuth(true)
+    activateAuth: () => {
+      setIsAuth(true)
+    }
   }
 
   return (
@@ -20,5 +22,5 @@ const Provider = ({ children }) => {
 
 export default {
   Provider,
-  Consume: Context.Consumer
+  Consumer: Context.Consumer
 }
