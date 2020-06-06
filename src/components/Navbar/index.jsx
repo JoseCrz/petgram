@@ -1,15 +1,15 @@
 import React from 'react'
 import { Nav, Link } from './style'
-import { MdHome, MdFavoriteBorder, MdPersonOutline } from 'react-icons/md'
+import { FaHome, FaHeart, FaUser } from 'react-icons/fa'
 
-const SIZE = '32px'
+const SIZE = '28px'
 
 export const Navbar = () => {
   return (
     <Nav>
-      <Link to='/'><MdHome size={SIZE} /></Link>
-      <Link to='/favs'><MdFavoriteBorder size={SIZE} /></Link>
-      <Link to='/user'><MdPersonOutline size={SIZE} /></Link>
+      <Link to='/'><FaHome size={SIZE} /></Link>
+      <Link to='/favs'><FaHeart size={SIZE} /></Link>
+      <Link to='/user'><FaUser size={SIZE} /></Link>
     </Nav>
   )
 }
