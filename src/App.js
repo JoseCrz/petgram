@@ -2,6 +2,7 @@
 import React from 'react'
 import { Router } from '@reach/router'
 
+import Context from './Context'
 import { GlobalStyle } from './styles/GlobalStyle'
 import { Logo } from './components/Logo'
 import { Home } from './pages/Home'
@@ -10,10 +11,6 @@ import { Navbar } from './components/Navbar'
 import { Favs } from './pages/Favs'
 import { User } from './pages/User'
 import { NotRegisteredUser } from './pages/NotRegisteredUser'
-
-const UserLogged = ({ children }) => {
-  return children({ isAuth: true })
-}
 
 export const App = () => {
   const urlParams = new window.URLSearchParams(window.location.search)
@@ -30,7 +27,7 @@ export const App = () => {
         
         
       </Router>
-      <UserLogged>
+      <Context.Consumer>
         {
           ({ isAuth }) => 
             isAuth
@@ -45,7 +42,7 @@ export const App = () => {
               <NotRegisteredUser path='/user' />
             </Router>
         }
-      </UserLogged>
+      </Context.Consumer>
       <Navbar />
     </>
   )
