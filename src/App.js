@@ -1,8 +1,7 @@
 /* eslint-disable */
 import React from 'react'
 import { GlobalStyle } from './styles/GlobalStyle'
-import { ListOfCategories } from './components/ListOfCategories'
-import { ListOfPhotoCards } from './containers/ListofPhotoCards'
+import { Home } from './pages/Home'
 import { PhotoCardWithQuery } from './containers/PhotoCardWithQuery'
 import { Logo } from './components/Logo'
 
@@ -16,13 +15,8 @@ export const App = () => {
       <Logo />
       {
         detailId
-          ? 
-          <PhotoCardWithQuery id={detailId} />
-          : 
-          <>
-            <ListOfCategories />
-            <ListOfPhotoCards categoryId={1} /> 
-          </>
+          ? <PhotoCardWithQuery id={detailId} />
+          : <Home />
       }
     </>
   )
