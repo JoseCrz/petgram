@@ -3,6 +3,7 @@ import Context from '../Context'
 
 import { UserForm } from '../components/UserForm'
 import { RegisterMutation } from '../containers/RegisterMutation'
+import { LoginMutation } from '../containers/LoginMutation'
 
 export const NotRegisteredUser = () => {
   return (
@@ -34,7 +35,28 @@ export const NotRegisteredUser = () => {
               }
             </RegisterMutation>
 
-            <UserForm title='Sign in' onSubmit={activateAuth} />
+            <LoginMutation>
+              {
+                (login, { data, loading, error }) => {
+                  const onSubmit = async ({ email, password }) => {
+                    const input = { email, password }
+                    const variables = { input }
+
+                    try {
+                      await login({ variables })
+                      activateAuth()
+                    } catch (error) {
+                      console.log(error)
+                    }
+                  }
+
+                  const errorMessage = error && 'Invalid credentials'
+                  return (
+                    <UserForm title='Sign in' onSubmit={onSubmit} disabled={loading} error={errorMessage} />
+                  )
+                }
+              }
+            </LoginMutation>
           </>
         )
       }
