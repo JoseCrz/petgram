@@ -4,7 +4,6 @@ import { Router, Redirect } from '@reach/router'
 
 import { Context } from './Context'
 import { GlobalStyle } from './styles/GlobalStyle'
-import { Logo } from './components/Logo'
 import { NotFound } from './pages/NotFound'
 import { Home } from './pages/Home'
 import { Detail } from './pages/Detail'
@@ -19,7 +18,6 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Logo />
       <Router>
         <NotFound default />
         <Home path='/' />
