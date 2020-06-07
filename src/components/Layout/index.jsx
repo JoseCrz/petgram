@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Logo } from '../Logo'
+import { Navbar } from '../Navbar'
 
 import { Wrapper } from './style'
 
@@ -15,6 +16,7 @@ export const Layout = ({ title, description, children }) => {
         <Logo />
         {children}
       </Wrapper>
+      <Navbar />
     </>
   )
 }

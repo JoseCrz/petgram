@@ -7,7 +7,6 @@ import { GlobalStyle } from './styles/GlobalStyle'
 const NotFound = React.lazy(() => import('./pages/NotFound'))
 const Home = React.lazy(() => import('./pages/Home'))
 const Detail = React.lazy(() => import('./pages/Detail'))
-import { Navbar } from './components/Navbar'
 const Favs = React.lazy(() => import('./pages/Favs'))
 const User = React.lazy(() => import('./pages/User'))
 const NotRegisteredUser = React.lazy(() => import('./pages/NotRegisteredUser'))
@@ -30,7 +29,6 @@ export const App = () => {
         <Favs path='/favs' />
         <User path='/user' />
       </Router>
-      <Navbar />
     </Suspense>
   )
 }
