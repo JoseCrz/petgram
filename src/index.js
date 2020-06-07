@@ -6,7 +6,17 @@ import { ApolloProvider } from 'react-apollo'
 import { App } from './App'
 
 const client = new ApolloClient({
-  uri: 'https://petgram-backend-one.now.sh/graphql'
+  uri: 'https://petgram-backend-one.now.sh/graphql',
+  request: operation => {
+    const token = window.sessionStorage.getItem('token')
+    const authorization = token ? `Bearer ${token}` : ''
+
+    operation.setContext({
+      headers: {
+        authorization
+      }
+    })
+  }
 })
 
 ReactDOM.render(
