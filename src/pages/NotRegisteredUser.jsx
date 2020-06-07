@@ -19,8 +19,9 @@ export const NotRegisteredUser = () => {
                     const variables = { input }
 
                     try {
-                      await register({ variables })
-                      activateAuth()
+                      const { data } = await register({ variables })
+                      const signupToken = data.signup
+                      activateAuth(signupToken)
                     } catch (error) {
                       console.log(error)
                     }
@@ -43,8 +44,9 @@ export const NotRegisteredUser = () => {
                     const variables = { input }
 
                     try {
-                      await login({ variables })
-                      activateAuth()
+                      const { data } = await login({ variables })
+                      const loginToken = data.login
+                      activateAuth(loginToken)
                     } catch (error) {
                       console.log(error)
                     }
