@@ -11,6 +11,6 @@ export const ActionButton = ({ onClick, text, disabled, type }) => {
 ActionButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   type: PropTypes.string
 }
