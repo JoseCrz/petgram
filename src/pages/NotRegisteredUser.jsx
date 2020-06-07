@@ -12,7 +12,7 @@ export const NotRegisteredUser = () => {
           <>
             <RegisterMutation>
               {
-                (register) => {
+                (register, { data, loading, error }) => {
                   const onSubmit = async ({ email, password }) => {
                     const input = { email, password }
                     const variables = { input }
@@ -25,8 +25,10 @@ export const NotRegisteredUser = () => {
                     }
                   }
 
+                  const errorMessage = error && 'There\'s been a problem.'
+
                   return (
-                    <UserForm title='Sign up' onSubmit={onSubmit} />
+                    <UserForm title='Sign up' onSubmit={onSubmit} disabled={loading} error={errorMessage} />
                   )
                 }
               }

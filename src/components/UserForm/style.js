@@ -17,6 +17,10 @@ export const Input = styled.input`
   padding: 8px 4px;
   display: block;
   width: 100%;
+
+  &[disabled] {
+    opacity: .3;
+  }
 `
 
 export const Button = styled.button`
@@ -28,4 +32,12 @@ export const Button = styled.button`
   width: 100%;
   text-align: center;
   text-transform: uppercase;
+  
+  &[disabled] {
+    opacity: .3;
+  }
+`
+export const ErrorMessage = styled.p`
+  color: red;
+  margin-top: 12px;
 `
