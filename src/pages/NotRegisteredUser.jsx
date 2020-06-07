@@ -6,7 +6,7 @@ import { UserForm } from '../components/UserForm'
 import { RegisterMutation } from '../containers/RegisterMutation'
 import { LoginMutation } from '../containers/LoginMutation'
 
-export const NotRegisteredUser = () => {
+const NotRegisteredUser = () => {
   const { activateAuth } = useContext(Context)
 
   return (
@@ -62,3 +62,5 @@ export const NotRegisteredUser = () => {
     </Layout>
   )
 }
+
+export default NotRegisteredUser

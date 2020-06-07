@@ -3,7 +3,7 @@ import { Context } from '../Context'
 import { Layout } from '../components/Layout'
 import { ActionButton } from '../components/ActionButton'
 
-export const User = () => {
+const User = () => {
   const { removeAuth } = useContext(Context)
   return (
     <Layout title='User' description='User settings'>
@@ -12,3 +12,5 @@ export const User = () => {
     </Layout>
   )
 }
+
+export default User
