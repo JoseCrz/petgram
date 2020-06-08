@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackPWAManifest = require('webpack-pwa-manifest')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+
 const path = require('path')
 
 module.exports = {
@@ -17,13 +19,31 @@ module.exports = {
     new WebpackPWAManifest({
       name: 'Mimigram | Cutest pets on the internet',
       shortname: 'Mimigram 🐱',
-      description: 'Find the most cutest, adorable pets on the internet!',
+      description: 'Find the cutest, most adorable pets on the internet!',
       background_color: '#fff',
       theme_color: '#b1a',
       icons: [
         {
           src: path.resolve('src/assets/icon.png'),
           sizes: [96, 128, 192, 256, 384, 512]
+        }
+      ]
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('https://(res.cloudinary.com|images.unsplash.com)'),
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'images'
+          }
+        },
+        {
+          urlPattern: new RegExp('https://petgram-backend-one.now.sh'),
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api'
+          }
         }
       ]
     })
